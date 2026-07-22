@@ -1,8 +1,8 @@
 class Ipcheck < Formula
   desc "Diagnose Codex and Claude Code network paths"
   homepage "https://github.com/jacklv-coder/ipcheck"
-  url "https://github.com/jacklv-coder/ipcheck/releases/download/v0.4.0/ipcheck-0.4.0.tar.gz"
-  sha256 "603e8bb2daf13a3aaadd7df35e3efd2a6e1f2b6589e682bd8689fd8a77bd5972"
+  url "https://github.com/jacklv-coder/ipcheck/releases/download/v0.6.0/ipcheck-0.6.0.tar.gz"
+  sha256 "3ca671cdd13bfc182dd3f1af358937064afe5e0d230f41ab179840c92db327e5"
   license "Apache-2.0"
 
   def install
