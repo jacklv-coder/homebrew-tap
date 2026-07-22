@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: homebrew-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -11,10 +15,18 @@ jobs:
   formula:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Tap repository
         run: brew tap jacklv-coder/tap "$GITHUB_WORKSPACE"
+      - name: Trust formula
+        run: brew trust --formula jacklv-coder/tap/ipcheck
+      - name: Check formula style
+        run: brew style Formula/ipcheck.rb
+      - name: Audit formula
+        run: brew audit --strict jacklv-coder/tap/ipcheck
       - name: Install formula
         run: brew install jacklv-coder/tap/ipcheck
       - name: Test formula
         run: brew test jacklv-coder/tap/ipcheck
+      - name: Verify installed version
+        run: test "$(ipcheck --version)" = "ipcheck 0.3.0"
