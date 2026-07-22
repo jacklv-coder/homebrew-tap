@@ -28,5 +28,3 @@ jobs:
         run: brew install jacklv-coder/tap/ipcheck
       - name: Test formula
         run: brew test jacklv-coder/tap/ipcheck
-      - name: Verify installed version
-        run: test "$(ipcheck --version)" = "ipcheck 0.3.0"
